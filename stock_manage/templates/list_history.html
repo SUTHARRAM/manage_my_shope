@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block listblock %}
+<div class="row">
+    <div class="col-sm-2">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Search">
+    </form>
+    </div>
+
+    <div class="col-sm-10">
+    <h3>{{title}}</h3>
+
+    <div class="display_table" >
+        <table class="table" >
+            <thead>
+            <tr>
+                <th>COUNT</th>
+                <th>ID</th>
+                <th>CATEGORY</th>
+                <th>ITEM NAME</th>
+                <th>QUANTITY IN STORE</th>
+                <th>ISSUE QUANTITY</th>
+                <th>RECEIVE QUANTITY</th>
+                <th>LAST UPDATED</th>
+            </tr>
+            </thead>
+            {% for instance in queryset %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{instance.id}}</td>
+                <td>{{instance.category}}</td>
+                <td>{{instance.item_name}}</td>
+                <td>{{instance.quantity}}</td>
+                <td>{{instance.issue_quantity}}</td>
+                <td>{{instance.received_quantity}}</td>
+                <td>{{instance.last_updated}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+   </div>
+</div>
+{% endblock %}
