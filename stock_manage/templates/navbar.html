@@ -1,3 +1,5 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/">My Shope</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +17,7 @@
             <li>
               <a href="/accounts/logout">
                 <button class="btn btn-danger" >
-                  {{user}} | Logout 
+                  {{user}} <img src="{% static '' %}/img/userPics/u_{{user.id}}.jpg" width="30" height="30" class="rounded-circle" alt="userProfile">
               </button>
               </a>
             </li>

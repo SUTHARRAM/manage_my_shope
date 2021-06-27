@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 import csv
 
-from .models import Stock, StockHistory
+
+from .models import Stock, StockHistory, UserProfile
 
 from .forms import (StockCreateForm, StockSearchForm, StockUpdateForm, 
                     IssueForm, ReceiveForm, ReorderLevelForm, StockHistorySearchForm, 
@@ -251,9 +253,10 @@ def add_category(request):
     return render(request, 'add_items.html', context)
 
 def temp_view(request): 
-    form = StockSearchForm(request.POST or None)
+    queryset = UserProfile.objects.all(); 
     context = {
-        "form": form
+        'title': 'List of all registered users', 
+        'queryset': queryset
     }
     return render(request, 'temp.html', context)
 

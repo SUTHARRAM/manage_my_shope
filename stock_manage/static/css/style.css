@@ -144,3 +144,7 @@ th {
   color: #dc3545;
 }
 /* End Table paination styling*/
+
+.profile_img {
+  border-radius: 20%; 
+}

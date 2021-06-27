@@ -15,5 +15,5 @@ urlpatterns = [
     path('reorder_level/<str:pk>/', reorder_level, name="reorder_level"), 
     path('list_history/', list_history, name='list_history'), 
     path('add_category/', add_category, name='add_category'), 
-  #  path('temp/', temp_view, name='temp_view'), 
+    path('temp/', temp_view, name='temp_view'), 
 ]
