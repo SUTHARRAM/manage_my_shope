@@ -8,8 +8,11 @@ import os
 
 def image_rename(instance, filename): 
     ext = filename.split('.')[-1]
-    filename = "%s_%s.%s" % ("u", instance.id, ext)
-    return os.path.join("stock_manage/static/img/userPics/"+ filename)
+    filename = "%s.%s" % (instance.id, ext)
+    path = os.path.join("stock_manage/static/img/userPics/"+ filename)
+    if os.path.exists(path):
+        os.remove(path)
+    return path
 
 
 class UserProfile(models.Model):
