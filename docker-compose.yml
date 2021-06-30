@@ -1,0 +1,36 @@
+version: "2.4"
+
+services: 
+  django: 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes: 
+      - django_static_volume:/usr/src/app/static
+    expose: 
+      - 8000
+    env_file: 
+      - .env
+    command: gunicorn my_store.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - db
+  db: 
+    image: postgres:12.0-alpine
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data/
+    env_file: 
+      - ./postgres/.env
+
+  nginx: 
+    restart: always
+    build: ./nginx
+    volumes: 
+      - django_static_volume:/usr/src/app/django_files/static
+    ports: 
+      - 80:80
+    depends_on: 
+      - django
+
+volumes: 
+  postgres_data:
+  django_static_volume: 
